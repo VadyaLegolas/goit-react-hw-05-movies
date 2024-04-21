@@ -24,7 +24,6 @@ export const Home = () => {
      
     }, [])
     
-    console.log(trendings)
     return (
         <>
         <h1>Trending today</h1>
