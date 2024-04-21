@@ -24,7 +24,10 @@ export const Home = () => {
     
     console.log(trendings)
     return (
+        <>
         <h1>Trending today</h1>
-        
+        {isLoading && <h2>Loading...</h2>}
+        {error && <h2>{error.message}</h2>}
+        </>
     )
 }
