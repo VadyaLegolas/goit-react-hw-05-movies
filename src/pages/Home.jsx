@@ -20,7 +20,7 @@ export const Home = () => {
                 setIsLoading(false)
             }  
         }
-         fetchTrendings().then(data=>console.log(data))
+         fetchTrendings()
      
     }, [])
     
@@ -30,7 +30,7 @@ export const Home = () => {
         <h1>Trending today</h1>
         {isLoading && <h2>Loading...</h2>}
         {error && <h2>{error.message}</h2>}
-        {trendings && <List>{trendings.map(movie => <Link to={`movie/${movie.id}`}><li key={movie.id}>{<img src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`} width="100" alt={movie.title}/>} {movie.title}</li></Link>)}</List>}
+        {trendings && <List>{trendings.map(movie => <Link to={`movies/${movie.id}`}><li key={movie.id}>{<img src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`} width="100" alt={movie.title}/>} {movie.title}</li></Link>)}</List>}
         </>
     )
 }
