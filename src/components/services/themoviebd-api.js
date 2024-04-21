@@ -8,28 +8,41 @@
 // /movies/get-movie-reviews запит оглядів для сторінки кінофільму.
 
 // const API_KEY = "2e15023d5b9d7edc1a848acf1876b445"
-const API_KEY_ACCESS = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyZTE1MDIzZDViOWQ3ZWRjMWE4NDhhY2YxODc2YjQ0NSIsInN1YiI6IjY2MGU1N2E5NmRjNTA3MDE2NDU2NGYzOSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.7g5_S73d_kmCsOujpak_TASQ3OBWAJbyGG52uGpicY8"
+const API_KEY_ACCESS =
+  'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIyZTE1MDIzZDViOWQ3ZWRjMWE4NDhhY2YxODc2YjQ0NSIsInN1YiI6IjY2MGU1N2E5NmRjNTA3MDE2NDU2NGYzOSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.7g5_S73d_kmCsOujpak_TASQ3OBWAJbyGG52uGpicY8';
 
-// const AccountID = "21183740" 
+// const AccountID = "21183740"
 
-const BASE_URL = "https://api.themoviedb.org/3/"
+const BASE_URL = 'https://api.themoviedb.org/3/';
 
-const TrandingMovies = "trending/movie/day"
+const TrandingMovies = 'trending/movie/day';
 // const SearchMovies = "search/movie"
 // const MovieDetails = "movie/{movie_id}"
 // const MovieCast = "movie/{movie_id}/credits"
 // const MovieReviews = "movie/{movie_id}/reviews"
 
 const options = {
-    method: 'GET',
-    headers: {
-      accept: 'application/json',
-      Authorization: 'Bearer ' + API_KEY_ACCESS
-    }
-  };
+  method: 'GET',
+  headers: {
+    accept: 'application/json',
+    Authorization: 'Bearer ' + API_KEY_ACCESS,
+  },
+};
 
-  export const  GetTrendings = async () =>{
-    const fetchMovies =await fetch(`${BASE_URL}${TrandingMovies}`, options)
-    return await fetchMovies.json()
-  }
-  
+export const GetTrendings = async () => {
+  const fetchMovies = await fetch(`${BASE_URL}${TrandingMovies}`, options);
+  return await fetchMovies.json();
+};
+
+export const SearchMovies = async query => {
+  const fetchMovies = await fetch(
+    `${BASE_URL}search/movie?query=${query}`,
+    options
+  );
+  return await fetchMovies.json();
+};
+
+export const GetMovieDetails = async movieId => {
+  const fetchMovies = await fetch(`${BASE_URL}movie/${movieId}`, options);
+  return await fetchMovies.json();
+};

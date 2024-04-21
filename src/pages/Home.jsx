@@ -23,7 +23,7 @@ export const Home = () => {
          fetchTrendings()
      
     }, [])
-    
+
     return (
         <>
         <h1>Trending today</h1>
