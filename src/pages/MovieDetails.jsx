@@ -1,12 +1,11 @@
 import { GetMovieDetails } from 'components/services/themoviebd-api';
 import { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, Outlet, useParams } from 'react-router-dom';
 import { Div } from './MovieDetails.styled';
+import { ColorRing } from 'react-loader-spinner';
 
 const MovieDetails = () => {
   const { movieId } = useParams();
-
-  console.log(movieId);
 
   const [movieDetail, setMovieDetail] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -17,7 +16,6 @@ const MovieDetails = () => {
       try {
         setIsLoading(true);
         const moviesFetch = await GetMovieDetails(movieId);
-        // console.log(moviesFetch.results)
         setMovieDetail(moviesFetch);
       } catch (error) {
         setError(error);
@@ -27,11 +25,22 @@ const MovieDetails = () => {
     };
     fetchMovieDetails();
   }, [movieId]);
-  console.log(movieDetail);
   return (
     <>
       <h1>Movie details</h1>
-      {isLoading && <h2>Loading...</h2>}
+      {isLoading && (
+        <h2>
+          <ColorRing
+            visible={true}
+            height="80"
+            width="80"
+            ariaLabel="color-ring-loading"
+            wrapperStyle={{}}
+            wrapperClass="color-ring-wrapper"
+            colors={['#e15b64', '#f47e60', '#f8b26a', '#abbd81', '#849b87']}
+          />
+        </h2>
+      )}
       {error && <h2>{error.message}</h2>}
       {movieDetail && (
         <>
@@ -63,6 +72,8 @@ const MovieDetails = () => {
               <Link to="reviews">Reviews</Link>
             </li>
           </ul>
+          <hr />
+          <Outlet />
         </>
       )}
     </>

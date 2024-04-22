@@ -46,3 +46,19 @@ export const GetMovieDetails = async movieId => {
   const fetchMovies = await fetch(`${BASE_URL}movie/${movieId}`, options);
   return await fetchMovies.json();
 };
+
+export const GetMovieCredits = async movieId => {
+  const fetchMovies = await fetch(
+    `${BASE_URL}movie/${movieId}/credits`,
+    options
+  );
+  return await fetchMovies.json();
+};
+
+export const GetMovieReviews = async movieId => {
+  const fetchMovies = await fetch(
+    `${BASE_URL}movie/${movieId}/reviews`,
+    options
+  );
+  return await fetchMovies.json();
+};
