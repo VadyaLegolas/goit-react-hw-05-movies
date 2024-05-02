@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react';
 import { GetTrendings } from '../components/services/themoviebd-api';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { List } from './Home.styled';
 import { ColorRing } from 'react-loader-spinner';
 export const Home = () => {
   const [trendings, setTrendings] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const fetchTrendings = async () => {
@@ -44,7 +45,7 @@ export const Home = () => {
       {trendings && (
         <List>
           {trendings.map(movie => (
-            <Link to={`movies/${movie.id}`}>
+            <Link to={`movies/${movie.id}`} state={ {from: location }}>
               <li key={movie.id}>
                 {
                   <img

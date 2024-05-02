@@ -1,11 +1,15 @@
 import { GetMovieDetails } from 'components/services/themoviebd-api';
-import { useEffect, useState } from 'react';
-import { Link, Outlet, useParams } from 'react-router-dom';
-import { Div } from './MovieDetails.styled';
+import { useEffect, useRef, useState } from 'react';
+import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
+import { BackLink, Div } from './MovieDetails.styled';
 import { ColorRing } from 'react-loader-spinner';
 
 const MovieDetails = () => {
   const { movieId } = useParams();
+  const location = useLocation()
+  const backLinkLocationRef = useRef(location.state?.from ?? '/');
+  console.log(backLinkLocationRef)
+  console.log(location)
 
   const [movieDetail, setMovieDetail] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -28,6 +32,7 @@ const MovieDetails = () => {
   return (
     <>
       <h1>Movie details</h1>
+      <p><BackLink to={backLinkLocationRef.current}>↩ Go back</BackLink></p>
       {isLoading && (
         <h2>
           <ColorRing

@@ -1,6 +1,8 @@
 import { MagnifyingGlass } from 'react-loader-spinner';
+import { useLocation } from 'react-router-dom';
 
 const Movies = () => {
+  // const location = useLocation();
   return (
     <div>
       <MagnifyingGlass
