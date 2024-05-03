@@ -1,23 +1,22 @@
 import React from 'react';
-import { List } from './MoviesList.styled';
-import { Link } from 'react-router-dom';
+import { List, MovieImg, MovieItem, MovieLink } from './MoviesList.styled';
 
 function MoviesList({ list, location, path = '' }) {
   return (
     <List>
       {list.map(movie => (
-        <Link to={`${path}${movie.id}`} state={{ from: location }}>
-          <li key={movie.id}>
+        <MovieLink to={`${path}${movie.id}`} state={{ from: location }}>
+          <MovieItem key={movie.id}>
             {
-              <img
+              <MovieImg
                 src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`}
                 width="100"
                 alt={movie.title}
               />
-            }{' '}
+            }
             {movie.title}
-          </li>
-        </Link>
+          </MovieItem>
+        </MovieLink>
       ))}
     </List>
   );
