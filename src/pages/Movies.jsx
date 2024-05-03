@@ -20,12 +20,13 @@ const Movies = () => {
     const fetchMovies = async () => {
       setIsLoading(true);
       setMovies(null);
-      setError(null)
+      setError(null);
       try {
-        
         const { results } = await SearchMovies(searchValue);
         if (results.length === 0) {
-          throw new Error(`We don't have any movies for this query "${searchValue}"`);
+          throw new Error(
+            `We don't have any movies for this query "${searchValue}"`
+          );
         }
         setMovies(results);
       } catch (error) {
@@ -35,7 +36,7 @@ const Movies = () => {
       }
     };
     fetchMovies();
-  }, [searchValue])
+  }, [searchValue]);
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -46,12 +47,11 @@ const Movies = () => {
     }
     setSearchParams({ query: searchQuery });
     e.target.reset();
-
   };
 
   return (
     <div>
-      <SearchBox onSubmit={handleSubmit} ></SearchBox>
+      <SearchBox onSubmit={handleSubmit}></SearchBox>
       {isLoading && (
         <MagnifyingGlass
           visible={true}
@@ -66,9 +66,7 @@ const Movies = () => {
       )}
       {error && <h2>{error.message}</h2>}
 
-      {movies && (
-        <MoviesList list={movies} location={location} />
-      )}
+      {movies && <MoviesList list={movies} location={location} />}
     </div>
   );
 };

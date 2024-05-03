@@ -14,7 +14,6 @@ export const Home = () => {
       try {
         setIsLoading(true);
         const moviesFetch = await GetTrendings();
-        // console.log(moviesFetch.results)
         setTrendings(moviesFetch.results);
       } catch (error) {
         setError(error);
@@ -43,7 +42,7 @@ export const Home = () => {
       )}
       {error && <h2>{error.message}</h2>}
       {trendings && (
-       <MoviesList list={trendings} location={location} path="movies/" />
+        <MoviesList list={trendings} location={location} path="movies/" />
       )}
     </>
   );
