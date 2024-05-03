@@ -18,7 +18,7 @@ export const GetTrendings = async () => {
 
 export const SearchMovies = async query => {
   const fetchMovies = await fetch(
-    `${BASE_URL}search/movie?query=${query}`,
+    `${BASE_URL}search/movie?include_adult=true&query=${query}`,
     options
   );
   return await fetchMovies.json();

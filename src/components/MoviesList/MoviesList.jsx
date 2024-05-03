@@ -13,7 +13,7 @@ function MoviesList({ list, location, path = '' }) {
                 alt={movie.title}
               />
             }
-            {movie.title}
+            {movie.title}({movie.release_date.slice(0, 4)})
           </MovieItem>
         </MovieLink>
       ))}
