@@ -44,6 +44,8 @@ const Movies = () => {
     let searchQuery = e.target.query.value;
     if (searchQuery.trim() === '') {
       setSearchParams({});
+      setMovies(null);
+      setError({message: 'Enter a search query'});
       return;
     }
     setSearchParams({ query: searchQuery });
