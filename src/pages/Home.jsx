@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { GetTrendings } from '../components/services/themoviebd-api';
-import { Link, useLocation } from 'react-router-dom';
-import { List } from './Home.styled';
+import { useLocation } from 'react-router-dom';
 import { ColorRing } from 'react-loader-spinner';
+import MoviesList from 'components/MoviesList/MoviesList';
 export const Home = () => {
   const [trendings, setTrendings] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -43,22 +43,7 @@ export const Home = () => {
       )}
       {error && <h2>{error.message}</h2>}
       {trendings && (
-        <List>
-          {trendings.map(movie => (
-            <Link to={`movies/${movie.id}`} state={ {from: location }}>
-              <li key={movie.id}>
-                {
-                  <img
-                    src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`}
-                    width="100"
-                    alt={movie.title}
-                  />
-                }{' '}
-                {movie.title}
-              </li>
-            </Link>
-          ))}
-        </List>
+       <MoviesList list={trendings} location={location} path="movies/" />
       )}
     </>
   );
