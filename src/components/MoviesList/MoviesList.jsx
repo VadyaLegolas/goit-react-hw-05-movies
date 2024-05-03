@@ -1,4 +1,3 @@
-import React from 'react';
 import { List, MovieImg, MovieItem, MovieLink } from './MoviesList.styled';
 
 function MoviesList({ list, location, path = '' }) {

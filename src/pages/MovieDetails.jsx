@@ -1,8 +1,9 @@
-import { GetMovieDetails } from 'components/services/themoviebd-api';
-import { useEffect, useRef, useState } from 'react';
+import { Suspense, useEffect, useRef, useState } from 'react';
 import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
-import { BackLink, Div, Img } from './MovieDetails.styled';
 import { ColorRing } from 'react-loader-spinner';
+
+import { GetMovieDetails } from 'components/services/themoviebd-api';
+import { BackLink, Div, Img } from './MovieDetails.styled';
 
 const MovieDetails = () => {
   const { movieId } = useParams();
@@ -78,7 +79,9 @@ const MovieDetails = () => {
             </li>
           </ul>
           <hr />
-          <Outlet />
+          <Suspense fallback={<div>Loading...</div>}>
+            <Outlet />
+          </Suspense>
         </>
       )}
     </>

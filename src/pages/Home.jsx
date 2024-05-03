@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
-import { GetTrendings } from '../components/services/themoviebd-api';
 import { useLocation } from 'react-router-dom';
 import { ColorRing } from 'react-loader-spinner';
+
+import { GetTrendings } from '../components/services/themoviebd-api';
 import MoviesList from 'components/MoviesList/MoviesList';
-export const Home = () => {
+const Home = () => {
   const [trendings, setTrendings] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -47,3 +48,5 @@ export const Home = () => {
     </>
   );
 };
+
+export default Home;

@@ -1,7 +1,8 @@
-import { GetMovieReviews } from 'components/services/themoviebd-api';
 import { useEffect, useState } from 'react';
-import { Comment } from 'react-loader-spinner';
 import { useParams } from 'react-router-dom';
+import { Comment } from 'react-loader-spinner';
+
+import { GetMovieReviews } from 'components/services/themoviebd-api';
 
 const Reviews = () => {
   const { movieId } = useParams();

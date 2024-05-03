@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
-import { MagnifyingGlass } from 'react-loader-spinner';
 import { useLocation, useSearchParams } from 'react-router-dom';
-import { SearchBox } from 'components/SearchBox/SearchBox';
+import { MagnifyingGlass } from 'react-loader-spinner';
+
 import { SearchMovies } from 'components/services/themoviebd-api';
+import SearchBox from 'components/SearchBox/SearchBox';
 import MoviesList from 'components/MoviesList/MoviesList';
 
 const Movies = () => {
