@@ -3,8 +3,11 @@ import styled from 'styled-components';
 
 export const Div = styled.div`
   display: flex;
-  justify-content: space-between;
 `;
+
+export const Img = styled.img`
+margin-right: 20px;
+`
 export const BackLink = styled(Link)`
   margin-bottom: 10px;
   text-decoration: none;

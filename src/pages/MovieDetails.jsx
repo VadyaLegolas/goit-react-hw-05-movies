@@ -1,7 +1,7 @@
 import { GetMovieDetails } from 'components/services/themoviebd-api';
 import { useEffect, useRef, useState } from 'react';
 import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
-import { BackLink, Div } from './MovieDetails.styled';
+import { BackLink, Div, Img } from './MovieDetails.styled';
 import { ColorRing } from 'react-loader-spinner';
 
 const MovieDetails = () => {
@@ -50,7 +50,7 @@ const MovieDetails = () => {
       {movieDetail && (
         <>
           <Div>
-            <img
+            <Img
               src={`https://image.tmdb.org/t/p/w500${movieDetail.poster_path}`}
               width="300"
               alt={MovieDetails.title}
