@@ -6,8 +6,9 @@ export const Div = styled.div`
 `;
 
 export const Img = styled.img`
-margin-right: 20px;
-`
+  margin-right: 20px;
+`;
+
 export const BackLink = styled(Link)`
   margin-bottom: 10px;
   text-decoration: none;
