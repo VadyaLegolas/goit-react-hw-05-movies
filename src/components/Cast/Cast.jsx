@@ -1,7 +1,9 @@
-import { GetMovieCredits } from 'components/services/themoviebd-api';
 import { useEffect, useState } from 'react';
-import { Blocks } from 'react-loader-spinner';
 import { useParams } from 'react-router-dom';
+
+import { Blocks } from 'react-loader-spinner';
+import { GetMovieCredits } from 'components/services/themoviebd-api';
+import noImg from '../../images/1716bf8da8ff566983fca0387acc8d35.png';
 
 const Cast = () => {
   const { movieId } = useParams();
@@ -43,21 +45,29 @@ const Cast = () => {
       {error && <h2>{error.message}</h2>}
       {movieCast && (
         <>
-          {movieCast.cast.map(element => {
-            return (
-              <>
-                <img
-                  src={`https://image.tmdb.org/t/p/w500${element.profile_path}`}
-                  width="100"
-                  alt={element.name}
-                />
-                <h3>{element.name}</h3>
-                <p>
-                  <b>Character:</b> {element.character}
-                </p>
-              </>
-            );
-          })}
+          {movieCast.cast.length === 0 ? (
+            <p>We don't have any cast for this movie</p>
+          ) : (
+            movieCast.cast.map(element => {
+              return (
+                <>
+                  <img
+                    src={
+                      element.profile_path
+                        ? `https://image.tmdb.org/t/p/w500${element.profile_path}`
+                        : noImg
+                    }
+                    width="100"
+                    alt={element.name}
+                  />
+                  <h3>{element.name}</h3>
+                  <p>
+                    <b>Character:</b> {element.character}
+                  </p>
+                </>
+              );
+            })
+          )}
         </>
       )}
     </>

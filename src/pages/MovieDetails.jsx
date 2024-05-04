@@ -4,6 +4,7 @@ import { ColorRing } from 'react-loader-spinner';
 
 import { GetMovieDetails } from 'components/services/themoviebd-api';
 import { BackLink, Div, Img } from './MovieDetails.styled';
+import noImg from '../images/No-Image-Placeholder.svg.png';
 
 const MovieDetails = () => {
   const { movieId } = useParams();
@@ -52,7 +53,11 @@ const MovieDetails = () => {
         <>
           <Div>
             <Img
-              src={`https://image.tmdb.org/t/p/w500${movieDetail.poster_path}`}
+              src={
+                movieDetail.poster_path
+                  ? `https://image.tmdb.org/t/p/w500${movieDetail.poster_path}`
+                  : noImg
+              }
               width="300"
               alt={MovieDetails.title}
             />
@@ -63,9 +68,9 @@ const MovieDetails = () => {
               </h2>
               <p>User score: {Math.round(movieDetail.vote_average * 10)}%</p>
               <h3>Overview:</h3>
-              <p>{movieDetail.overview}</p>
+              <p>{movieDetail.overview!==""?movieDetail.overview:"No description"}</p>
               <h3>Genres:</h3>
-              <p>{movieDetail.genres.map(element => element.name + ' ')}</p>
+              <p>{movieDetail.genres.length === 0 ? 'No genres' : movieDetail.genres.map(element => element.name + ' ')}</p>
             </div>
           </Div>
           <hr />

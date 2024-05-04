@@ -1,4 +1,5 @@
 import { List, MovieImg, MovieItem, MovieLink } from './MoviesList.styled';
+import noImg from '../../images/no_image.jpg';
 
 function MoviesList({ list, location, path = '' }) {
   return (
@@ -9,7 +10,7 @@ function MoviesList({ list, location, path = '' }) {
           <MovieItem key={movie.id}>
             {
               <MovieImg
-                src="../../images/no_image.jpg"
+                src={movie.backdrop_path ? `https://image.tmdb.org/t/p/w500${movie.backdrop_path}`: noImg}
                 width="100"
                 alt={movie.title}
               />
