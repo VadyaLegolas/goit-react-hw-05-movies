@@ -17,6 +17,9 @@ const Cast = () => {
       try {
         setIsLoading(true);
         const fetchCast = await GetMovieCredits(movieId);
+        if (fetchCast.cast.length === 0) {
+          throw new Error(`We don't have any cast for this movie`);
+        }
         setMovieCast(fetchCast);
       } catch (error) {
         setError(error);
@@ -42,32 +45,28 @@ const Cast = () => {
           />
         </h2>
       )}
-      {error && <h2>{error.message}</h2>}
+      {error && <p>{error.message}</p>}
       {movieCast && (
         <>
-          {movieCast.cast.length === 0 ? (
-            <p>We don't have any cast for this movie</p>
-          ) : (
-            movieCast.cast.map(element => {
-              return (
-                <>
-                  <img
-                    src={
-                      element.profile_path
-                        ? `https://image.tmdb.org/t/p/w500${element.profile_path}`
-                        : noImg
-                    }
-                    width="100"
-                    alt={element.name}
-                  />
-                  <h3>{element.name}</h3>
-                  <p>
-                    <b>Character:</b> {element.character}
-                  </p>
-                </>
-              );
-            })
-          )}
+          {movieCast.cast.map(element => {
+            return (
+              <>
+                <img
+                  src={
+                    element.profile_path
+                      ? `https://image.tmdb.org/t/p/w500${element.profile_path}`
+                      : noImg
+                  }
+                  width="100"
+                  alt={element.name}
+                />
+                <h3>{element.name}</h3>
+                <p>
+                  <b>Character:</b> {element.character}
+                </p>
+              </>
+            );
+          })}
         </>
       )}
     </>
