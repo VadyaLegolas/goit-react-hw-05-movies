@@ -63,14 +63,24 @@ const MovieDetails = () => {
             />
             <div>
               <h2>
-                {movieDetail.original_title} (
-                {movieDetail.release_date.slice(0, 4)})
+                {movieDetail.original_title}{' '}
+                {movieDetail.release_date
+                  ? ` (${movieDetail.release_date.slice(0, 4)})`
+                  : ''}
               </h2>
               <p>User score: {Math.round(movieDetail.vote_average * 10)}%</p>
               <h3>Overview:</h3>
-              <p>{movieDetail.overview!==""?movieDetail.overview:"No description"}</p>
+              <p>
+                {movieDetail.overview !== ''
+                  ? movieDetail.overview
+                  : 'No description'}
+              </p>
               <h3>Genres:</h3>
-              <p>{movieDetail.genres.length === 0 ? 'No genres' : movieDetail.genres.map(element => element.name + ' ')}</p>
+              <p>
+                {movieDetail.genres.length === 0
+                  ? 'No genres'
+                  : movieDetail.genres.map(element => element.name + ' ')}
+              </p>
             </div>
           </Div>
           <hr />
