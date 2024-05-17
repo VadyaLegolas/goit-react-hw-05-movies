@@ -6,7 +6,7 @@ function MoviesList({ list, location, path = '' }) {
     <List>
       {list.map(movie => (
         // Ключ перемещен на элемент MovieLink
-        <MovieLink key={movie.id} to={${path}${movie.id}} state={{ from: location }}>
+        <MovieLink key={movie.id} to={`${path}${movie.id}`} state={{ from: location }}>
           <MovieItem>
             <MovieImg
               // Исправлена интерполяция строки
