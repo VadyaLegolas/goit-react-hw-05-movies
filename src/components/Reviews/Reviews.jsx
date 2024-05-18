@@ -9,7 +9,7 @@ const Reviews = () => {
 
   const [movieReview, setMovieReview] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(false);
+  const [error, setError] = useState(null); // Изменено на null для начального состояния
 
   useEffect(() => {
     const fetchMovieReview = async () => {
@@ -17,11 +17,11 @@ const Reviews = () => {
         setIsLoading(true);
         const fetchReview = await GetMovieReviews(movieId);
         if (fetchReview.results.length === 0) {
-          throw new Error(`We don't have any reviews for this movie`);
+          throw new Error("We don't have any reviews for this movie"); // Исправлено на строку в кавычках
         }
         setMovieReview(fetchReview);
       } catch (error) {
-        setError(error);
+        setError(error); // Установка объекта ошибки
       } finally {
         setIsLoading(false);
       }
@@ -47,15 +47,14 @@ const Reviews = () => {
       )}
       {error && <p>{error.message}</p>}
       {movieReview && (
-        <>
-          {console.log(movieReview.results)}
+        <ul> {/* Обертка в список */}
           {movieReview.results.map(element => (
             <li key={element.id}>
               <b>Author: {element.author}</b>
               <p>{element.content}</p>
             </li>
           ))}
-        </>
+        </ul>
       )}
     </>
   );
