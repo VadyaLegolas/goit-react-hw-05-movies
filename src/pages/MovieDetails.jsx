@@ -78,6 +78,7 @@ const MovieDetails = () => {
                 : 'No genres'}
             </p>
           </div>
+          </Div>
           <hr />
           <h3>Additional information</h3>
           <ul>
@@ -92,7 +93,7 @@ const MovieDetails = () => {
           <Suspense fallback={<div>Loading...</div>}>
             <Outlet />
           </Suspense>
-        </Div>
+        
       )}
     </>
   );
