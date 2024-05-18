@@ -4,7 +4,7 @@ import { ColorRing } from 'react-loader-spinner';
 
 import { GetMovieDetails } from 'components/services/themoviebd-api';
 import { BackLink, Div, Img } from './MovieDetails.styled';
-import noImg from '../images/No-Image-Placeholder.svg.png';
+import noImg from '../images/No-Image-Placeholder.svg.jpg';
 
 const MovieDetails = () => {
   const { movieId } = useParams();

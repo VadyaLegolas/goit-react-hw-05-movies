@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 
 import { Blocks } from 'react-loader-spinner';
 import { GetMovieCredits } from 'components/services/themoviebd-api';
-import noImg from '../../images/1716bf8da8ff566983fca0387acc8d35.png';
+import noImg from '../../images/1716bf8da8ff566983fca0387acc8d35.jpg';
 
 const Cast = () => {
   const { movieId } = useParams();
