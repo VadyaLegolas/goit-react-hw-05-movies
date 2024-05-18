@@ -13,7 +13,7 @@ function MoviesList({ list, location, path = '' }) {
               src={movie.backdrop_path ? `https://image.tmdb.org/t/p/w500${movie.backdrop_path}` : noImg}
               width="100"
               // Указан альтернативный текст для изображения
-              alt={Poster for ${movie.title}}
+              alt={`Poster for ${movie.title}`}
             />
             {movie.title}
             {/* Условное отображение года выпуска */}
