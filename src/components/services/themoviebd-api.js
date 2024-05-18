@@ -11,8 +11,8 @@ const options = {
   },
 };
 
-export const GetTrendings = async () => {
-  const fetchTrendings = await fetch(`${BASE_URL}trending/movie/day`, options);
+export const GetTrendings = async (timeframe = "day" ) => {
+  const fetchTrendings = await fetch(`${BASE_URL}trending/movie/${timeframe} `, options);
   return await fetchTrendings.json();
 };
 
