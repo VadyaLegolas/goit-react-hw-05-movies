@@ -51,6 +51,7 @@ const MovieDetails = () => {
       )}
       {error && <h2>Something went wrong: {error.message}</h2>}
       {movieDetail && (
+      <>
         <Div>
           <Img
             src={
@@ -93,7 +94,7 @@ const MovieDetails = () => {
           <Suspense fallback={<div>Loading...</div>}>
             <Outlet />
           </Suspense>
-        
+      </>
       )}
     </>
   );
