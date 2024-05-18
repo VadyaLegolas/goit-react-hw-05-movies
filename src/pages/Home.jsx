@@ -36,7 +36,7 @@ const Home = () => {
       <h1>Trending today</h1>
       <div>
         <label>
-          Choose timeframe:
+          Choose timeframe:&nbsp
           <select value={timeframe} onChange={handleTimeframeChange}>
             <option value="day">Day</option>
             <option value="week">Week</option>
