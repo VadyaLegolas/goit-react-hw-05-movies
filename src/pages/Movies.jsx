@@ -9,7 +9,7 @@ import MoviesList from 'components/MoviesList/MoviesList';
 const Movies = () => {
   const [movies, setMovies] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(false);
+  const [error, setError] = useState(null); // Инициализация состояния ошибки как null
   const location = useLocation();
   const [searchParams, setSearchParams] = useSearchParams();
   const searchValue = searchParams.get('query') ?? '';
@@ -25,9 +25,7 @@ const Movies = () => {
       try {
         const { results } = await SearchMovies(searchValue);
         if (results.length === 0) {
-          throw new Error(
-            `We don't have any movies for this query "${searchValue}"`
-          );
+          throw new Error(`We don't have any movies for this query "${searchValue}"`); // Использование шаблонной строки
         }
         setMovies(results);
       } catch (error) {
@@ -41,7 +39,7 @@ const Movies = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    let searchQuery = e.target.query.value;
+    let searchQuery = e.target.elements.query.value; // Получение значения поискового запроса
     if (searchQuery.trim() === '') {
       setSearchParams({});
       setMovies(null);
@@ -49,12 +47,11 @@ const Movies = () => {
       return;
     }
     setSearchParams({ query: searchQuery });
-    e.target.reset();
   };
 
   return (
     <div>
-      <SearchBox onSubmit={handleSubmit}></SearchBox>
+      <SearchBox onSubmit={handleSubmit} />
       {isLoading && (
         <MagnifyingGlass
           visible={true}
