@@ -8,14 +8,15 @@ import MoviesList from 'components/MoviesList/MoviesList';
 const Home = () => {
   const [trendings, setTrendings] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null); // Изменено на null
+  const [error, setError] = useState(null);
+  const [timeframe, setTimeframe] = useState('day'); // Добавлено состояние для выбора временного интервала
   const location = useLocation();
 
   useEffect(() => {
     const fetchTrendings = async () => {
       try {
         setIsLoading(true);
-        const moviesFetch = await GetTrendings();
+        const moviesFetch = await GetTrendings(timeframe); // Обновлен вызов с параметром временного интервала
         setTrendings(moviesFetch.results);
       } catch (error) {
         setError(error);
@@ -24,13 +25,28 @@ const Home = () => {
       }
     };
     fetchTrendings();
-  }, []);
+  }, [timeframe]); // Обновлен массив зависимостей useEffect
+
+  const handleTimeframeChange = (event) => { // Обработчик изменения временного интервала
+    setTimeframe(event.target.value);
+  };
 
   return (
     <>
       <h1>Trending today</h1>
+      <div>
+        <label>
+          Choose timeframe:
+          <select value={timeframe} onChange={handleTimeframeChange}>
+            <option value="day">Day</option>
+            <option value="week">Week</option>
+            <option value="month">Month</option>
+            <option value="year">Year</option>
+          </select>
+        </label>
+      </div>
       {isLoading && (
-        <div className="loader"> {/* Обертка для стилизации */}
+        <div className="loader">
           <ColorRing
             visible={true}
             height="80"
@@ -42,7 +58,7 @@ const Home = () => {
           />
         </div>
       )}
-      {error && <h2>Something went wrong: {error.message}</h2>} {/* Дружелюбное сообщение об ошибке */}
+      {error && <h2>Something went wrong: {error.message}</h2>}
       {trendings && (
         <MoviesList list={trendings} location={location} path="movies/" />
       )}
