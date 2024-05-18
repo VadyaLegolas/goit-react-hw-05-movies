@@ -4,10 +4,11 @@ import { ColorRing } from 'react-loader-spinner';
 
 import { GetTrendings } from '../components/services/themoviebd-api';
 import MoviesList from 'components/MoviesList/MoviesList';
+
 const Home = () => {
   const [trendings, setTrendings] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(false);
+  const [error, setError] = useState(null); // Изменено на null
   const location = useLocation();
 
   useEffect(() => {
@@ -29,7 +30,7 @@ const Home = () => {
     <>
       <h1>Trending today</h1>
       {isLoading && (
-        <h2>
+        <div className="loader"> {/* Обертка для стилизации */}
           <ColorRing
             visible={true}
             height="80"
@@ -39,9 +40,9 @@ const Home = () => {
             wrapperClass="color-ring-wrapper"
             colors={['#e15b64', '#f47e60', '#f8b26a', '#abbd81', '#849b87']}
           />
-        </h2>
+        </div>
       )}
-      {error && <h2>{error.message}</h2>}
+      {error && <h2>Something went wrong: {error.message}</h2>} {/* Дружелюбное сообщение об ошибке */}
       {trendings && (
         <MoviesList list={trendings} location={location} path="movies/" />
       )}
