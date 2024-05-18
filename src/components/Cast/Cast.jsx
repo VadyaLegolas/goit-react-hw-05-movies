@@ -10,7 +10,7 @@ const Cast = () => {
 
   const [movieCast, setMovieCast] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(false);
+  const [error, setError] = useState(null); // Изменено на null для начального состояния
 
   useEffect(() => {
     const fetchMovieCast = async () => {
@@ -18,11 +18,11 @@ const Cast = () => {
         setIsLoading(true);
         const fetchCast = await GetMovieCredits(movieId);
         if (fetchCast.cast.length === 0) {
-          throw new Error(`We don't have any cast for this movie`);
+          throw new Error("We don't have any cast for this movie"); // Исправлено на строку в кавычках
         }
         setMovieCast(fetchCast);
       } catch (error) {
-        setError(error);
+        setError(error); // Установка объекта ошибки
       } finally {
         setIsLoading(false);
       }
@@ -47,27 +47,25 @@ const Cast = () => {
       )}
       {error && <p>{error.message}</p>}
       {movieCast && (
-        <>
-          {movieCast.cast.map(element => {
-            return (
-              <>
-                <img
-                  src={
-                    element.profile_path
-                      ? `https://image.tmdb.org/t/p/w500${element.profile_path}`
-                      : noImg
-                  }
-                  width="100"
-                  alt={element.name}
-                />
-                <h3>{element.name}</h3>
-                <p>
-                  <b>Character:</b> {element.character}
-                </p>
-              </>
-            );
-          })}
-        </>
+        <div> {/* Обертка для списка актеров */}
+          {movieCast.cast.map(element => (
+            <div key={element.id}> {/* Добавлен уникальный key */}
+              <img
+                src={
+                  element.profile_path
+                    ? `https://image.tmdb.org/t/p/w500${element.profile_path}` // Исправлена интерполяция строки
+                    : noImg
+                }
+                width="100"
+                alt={element.name}
+              />
+              <h3>{element.name}</h3>
+              <p>
+                <b>Character:</b> {element.character}
+              </p>
+            </div>
+          ))}
+        </div>
       )}
     </>
   );
